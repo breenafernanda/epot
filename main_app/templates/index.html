@@ -95,89 +95,28 @@
 
         <h2>Aulas</h2>
         <ul>
+            {% for aula in aulas %}
             <li>
-                <div class="aula-titulo">Aula 1: Introdução à Eletrônica de Potência (20:27)</div>
-                <div class="aula-topicos">Tópicos: Definição, Aplicações, Elementos básicos</div>
+                <div class="aula-titulo">{{ aula.titulo }} {% if aula.tempo_video %}({{ aula.tempo_video }}){% endif %}</div>
+                <div class="aula-topicos">Tópicos: {{ aula.topicos }}</div>
             </li>
-            <li>
-                <div class="aula-titulo">Aula 2: Diodos de Potência (30:15)</div>
-                <div class="aula-topicos">Tópicos: Características, Tipos, Aplicações</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 3: Dispositivos Tiristores (36:55)</div>
-                <div class="aula-topicos">Tópicos: SCR, TRIAC, DIAC</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 4: Transistores de Potência (23:04)</div>
-                <div class="aula-topicos">Tópicos: BJT, MOSFET, IGBT</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 5: Retificador Monofásico - Meia Onda - Carga R (17:21)</div>
-                <div class="aula-topicos">Tópicos: Análise, Cálculos, Formas de onda</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 6: Retificador Monofásico - Meia Onda - Carga RL (27:12)</div>
-                <div class="aula-topicos">Tópicos: Modo contínuo, Modo descontínuo</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 7: Retificador Monofásico - Meia Onda - Carga RL + Diodo de Roda Livre (18:02)</div>
-                <div class="aula-topicos">Tópicos: Diodo de roda livre, Análise</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 8: Retificador Monofásico - Meia Onda - Carga RLE (26:18)</div>
-                <div class="aula-topicos">Tópicos: Fonte CC, Análise completa</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 9: Retificador Monofásico - Onda Completa - Carga R (25:29)</div>
-                <div class="aula-topicos">Tópicos: Ponte de diodos, Centro derivado</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 10: Retificador Monofásico - Onda Completa - Carga RL (20:46)</div>
-                <div class="aula-topicos">Tópicos: Análise harmônica, Cálculos</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 11: Retificador Monofásico - Onda Completa - Carga RLE (N/A)</div>
-                <div class="aula-topicos">Tópicos: Modo contínuo, Potência</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 12: Projeto de Filtros de Saída (N/A)</div>
-                <div class="aula-topicos">Tópicos: Filtro capacitivo, Filtro LC</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 13: Retificador Trifásico - Três Pulsos (N/A)</div>
-                <div class="aula-topicos">Tópicos: Análise, Vantagens</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 14: Retificador Trifásico - Seis Pulsos (N/A)</div>
-                <div class="aula-topicos">Tópicos: Ponte trifásica, Cálculos</div>
-            </li>
-            <li>
-                <div class="aula-titulo">Aula 15: Retificador Trifásico - Seis Pulsos com Transformadores (N/A)</div>
-                <div class="aula-topicos">Tópicos: Δ-Y, Y-Δ</div>
-            </li>
+            {% endfor %}
         </ul>
 
         <h2>Conceitos</h2>
+        {% for conceito in conceitos %}
         <div>
-            <div class="conceito-titulo">Eletrônica de Potência</div>
-            <div class="conceito-definicao">Trata da aplicação de dispositivos semicondutores de potência na conversão e no controle da energia elétrica em níveis altos de potência.</div>
-            <div class="conceito-aplicacoes">Aplicações: Fontes de alimentação, Controle de motores, Sistemas de energia renovável</div>
+            <div class="conceito-titulo">{{ conceito.titulo }}</div>
+            <div class="conceito-definicao">{{ conceito.definicao }}</div>
+            {% if conceito.aplicacoes %}<div class="conceito-aplicacoes">Aplicações: {{ conceito.aplicacoes }}</div>{% endif %}
+            {% if conceito.tipos %}<div class="conceito-tipos">Tipos: {{ conceito.tipos }}</div>{% endif %}
         </div>
-        <div>
-            <div class="conceito-titulo">Retificadores</div>
-            <div class="conceito-definicao">Circuitos que convertem tensão CA em tensão CC utilizando diodos ou outros dispositivos semicondutores.</div>
-            <div class="conceito-tipos">Tipos: Meia onda, Onda completa, Monofásicos, Trifásicos</div>
-        </div>
-        <div>
-            <div class="conceito-titulo">Dispositivos Semicondutores</div>
-            <div class="conceito-definicao">Componentes eletrônicos que controlam o fluxo de corrente elétrica.</div>
-            <div class="conceito-tipos">Tipos: Diodos, Tiristores (SCR, TRIAC), Transistores (BJT, MOSFET, IGBT)</div>
-        </div>
+        {% endfor %}
 
         <h2>Metodologia do Professor Danilo</h2>
-        <div class="metodologia-item">Teoria Sólida: Fundamentação teórica completa antes da prática</div>
-        <div class="metodologia-item">Exemplos Práticos: Resolução detalhada de exercícios passo a passo</div>
-        <div class="metodologia-item">Aplicações Reais: Conexão com aplicações industriais e comerciais</div>
+        {% for metodologia in metodologias %}
+        <div class="metodologia-item">{{ metodologia.item }}: {{ metodologia.descricao }}</div>
+        {% endfor %}
 
         <h2>Materiais</h2>
         <p>Os slides das aulas e a lista de exercícios com gabarito estão disponíveis nos anexos fornecidos anteriormente.</p>

@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Aula, Conceito, Metodologia
 
-# Register your models here.
+admin.site.register(Aula)
+admin.site.register(Conceito)
+admin.site.register(Metodologia)
+
+

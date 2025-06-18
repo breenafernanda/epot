@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ aula.titulo }} - Eletrônica de Potência 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0056b3;
+        }
+        h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        h3 {
+            color: #007bff;
+            margin-top: 15px;
+        }
+        pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .formula-box, .exemplo-box {
+            background-color: #e9e9e9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .formula-nome, .exemplo-titulo {
+            font-weight: bold;
+            color: #0056b3;
+        }
+        .formula-descricao, .exemplo-descricao {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .exemplo-passos {
+            white-space: pre-wrap;
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 8px;
+            border-radius: 3px;
+            margin-top: 5px;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #0056b3;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'index' %}" class="back-link">← Voltar para a Página Inicial</a>
+        <h1>{{ aula.titulo }}</h1>
+        <p><strong>Tópicos:</strong> {{ aula.topicos }}</p>
+
+        <h2>Conteúdo Detalhado</h2>
+        <pre>{{ aula.conteudo_detalhado }}</pre>
+
+        {% if conceitos_aula %}
+        <h2>Conceitos Relacionados</h2>
+        {% for conceito in conceitos_aula %}
+        <div>
+            <h3>{{ conceito.titulo }}</h3>
+            <p><strong>Definição:</strong> {{ conceito.definicao }}</p>
+            {% if conceito.aplicacoes %}<p><strong>Aplicações:</strong> {{ conceito.aplicacoes }}</p>{% endif %}
+            {% if conceito.tipos %}<p><strong>Tipos:</strong> {{ conceito.tipos }}</p>{% endif %}
+            {% if conceito.explicacao_detalhada %}<p><strong>Explicação Detalhada:</strong> {{ conceito.explicacao_detalhada }}</p>{% endif %}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if formulas_aula %}
+        <h2>Fórmulas</h2>
+        {% for formula in formulas_aula %}
+        <div class="formula-box">
+            <div class="formula-nome">{{ formula.nome }}</div>
+            <div class="formula-latex"><code>{{ formula.formula_latex }}</code></div>
+            <div class="formula-descricao">{{ formula.descricao }}</div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if exemplos_aula %}
+        <h2>Exemplos</h2>
+        {% for exemplo in exemplos_aula %}
+        <div class="exemplo-box">
+            <div class="exemplo-titulo">{{ exemplo.titulo }}</div>
+            <div class="exemplo-descricao">{{ exemplo.descricao }}</div>
+            <pre class="exemplo-passos">{{ exemplo.passos_resolucao }}</pre>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+    </div>
+</body>
+</html>
+
+

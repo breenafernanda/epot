@@ -64,6 +64,13 @@
             margin-bottom: 5px;
             border-radius: 5px;
         }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -97,8 +104,10 @@
         <ul>
             {% for aula in aulas %}
             <li>
-                <div class="aula-titulo">{{ aula.titulo }} {% if aula.tempo_video %}({{ aula.tempo_video }}){% endif %}</div>
-                <div class="aula-topicos">Tópicos: {{ aula.topicos }}</div>
+                <a href="{% url 'aula_detail' aula.id %}">
+                    <div class="aula-titulo">{{ aula.titulo }} {% if aula.tempo_video %}({{ aula.tempo_video }}){% endif %}</div>
+                    <div class="aula-topicos">Tópicos: {{ aula.topicos }}</div>
+                </a>
             </li>
             {% endfor %}
         </ul>
@@ -112,6 +121,16 @@
             {% if conceito.tipos %}<div class="conceito-tipos">Tipos: {{ conceito.tipos }}</div>{% endif %}
         </div>
         {% endfor %}
+
+        <h2>Exercícios</h2>
+        <ul>
+            {% for exercicio in exercicios %}
+            <li>
+                <div class="exercicio-titulo">{{ exercicio.titulo }}</div>
+                <div class="exercicio-descricao">{{ exercicio.descricao }}</div>
+            </li>
+            {% endfor %}
+        </ul>
 
         <h2>Metodologia do Professor Danilo</h2>
         {% for metodologia in metodologias %}
@@ -128,4 +147,5 @@
     </div>
 </body>
 </html>
+
 
